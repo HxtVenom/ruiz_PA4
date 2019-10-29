@@ -1,0 +1,10 @@
+Counts by Word
+how                 |                      1
+doing               |                      2
+Hello               |                      1
+are                 |                      1
+like                |                      1
+daily               |                      1
+this                |                      1
+I                   |                      1
+you                 |                      1

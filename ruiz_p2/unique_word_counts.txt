@@ -1,10 +1,12 @@
-Counts by Word
-how                 |                      1
-doing               |                      2
-Hello               |                      1
-are                 |                      1
-like                |                      1
-daily               |                      1
-this                |                      1
-I                   |                      1
-you                 |                      1
+		Counts by Word
+-------------------------------
+a              |              7
+like           |              7
+don't          |              1
+and            |              7
+programmer     |              7
+quickly        |              7
+I              |             14
+to             |              7
+program        |              7
+am             |              7

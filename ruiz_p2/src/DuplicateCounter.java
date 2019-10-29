@@ -20,6 +20,7 @@ public class DuplicateCounter {
                 throw new Exception("ERROR: File does not exist.");
             }
 
+            System.out.println("OPENING File: " + dataFile);
             fileInputStream = new FileInputStream(file);
             Scanner fileScanner = new Scanner(fileInputStream);
 
@@ -38,6 +39,7 @@ public class DuplicateCounter {
             System.out.println(e.getMessage());
         } finally{
             try {
+                System.out.println("CLOSING File: " + dataFile);
                 fileInputStream.close();
             }catch(IOException e){
                 System.out.println(e.getMessage());
@@ -50,20 +52,20 @@ public class DuplicateCounter {
         File file = new File(outputFile.toString());
         FileOutputStream fileOutput = null;
         PrintWriter fileWrite = null;
-        try {
-            file.createNewFile();
-        }catch(IOException e){
-            System.out.println(e.getMessage());
-        }
 
         try {
+            System.out.println("CREATING File: " + outputFile);
+            file.createNewFile();
+
+            System.out.println("OPENING File: " + outputFile);
             fileOutput = new FileOutputStream(file);
             fileWrite = new PrintWriter(fileOutput);
 
-            fileWrite.printf("Counts by Word\n");
+            fileWrite.printf("\t\tCounts by Word\n");
+            fileWrite.println("-------------------------------");
 
             for (Map.Entry<String, Integer> entry : wordCounter.entrySet()) {
-                fileWrite.printf("%-20s|%23d\n", entry.getKey(), entry.getValue());
+                fileWrite.printf("%-15s|%15d\n", entry.getKey(), entry.getValue());
             }
 
             fileWrite.flush();
@@ -71,6 +73,7 @@ public class DuplicateCounter {
             System.out.println(e.getMessage());
         }finally {
             try{
+                System.out.println("CLOSING File: " + outputFile);
                 fileOutput.close();
                 fileWrite.close();
             }catch(IOException e){

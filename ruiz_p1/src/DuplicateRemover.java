@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class DuplicateRemover {
     private HashSet<String> uniqueWords = new HashSet<String>();
 
-    public void remove (Path dataFile) {
+    public void remove (Path dataFile) throws IOException {
         BufferedReader reader = null;
         Scanner fileScanner = null;
         PrintWriter fileOut;
@@ -36,16 +36,18 @@ public class DuplicateRemover {
             //Print without duplicate words
             fileOut = new PrintWriter(dataFile.toString());
             fileOut.print(editedText);
-            fileOut.close();
 
-        }catch(IOException e){
-            System.out.println(e.getMessage());
-        }finally{
+            fileOut.flush(); //Clear Writer
+            fileOut.close(); //Close Writer
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally{
             System.out.println("CLOSING File: " + dataFile);
         }
     }
 
-    public void write(Path outputFile){
+    public void write(Path outputFile) throws IOException {
         File file = new File(outputFile.toString());
         PrintWriter fileWrite = null;
 
@@ -57,14 +59,17 @@ public class DuplicateRemover {
             fileWrite = new PrintWriter(file);
 
             //Iterates through set of uniqueWords and prints to file
+            fileWrite.println("Unique Words:");
+            fileWrite.println("-------------");
+
             for (Iterator<String> it = uniqueWords.iterator(); it.hasNext(); ) {
                 String nextWord = it.next();
                 fileWrite.println(nextWord);
             }
 
+            fileWrite.flush();
+
         } catch (FileNotFoundException e) {
-            System.out.println("ERROR: " + e.getMessage());
-        } catch (IOException e) {
             System.out.println("ERROR: " + e.getMessage());
         } finally{
             System.out.println("CLOSING File: " + outputFile);

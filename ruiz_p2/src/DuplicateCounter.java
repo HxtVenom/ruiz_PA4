@@ -1,7 +1,6 @@
 import java.io.*;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -9,10 +8,11 @@ public class DuplicateCounter {
 
     private HashMap<String, Integer> wordCounter = new HashMap<String, Integer>();
 
-    public void count(Path dataFile) {
+    public void count(Path dataFile) throws IOException {
         File file = new File(dataFile.toString());
-        String currWord;
         FileInputStream fileInputStream = null;
+
+        String currWord;
 
         try{
 
@@ -38,17 +38,13 @@ public class DuplicateCounter {
         } catch(Exception e){
             System.out.println(e.getMessage());
         } finally{
-            try {
-                System.out.println("CLOSING File: " + dataFile);
-                fileInputStream.close();
-            }catch(IOException e){
-                System.out.println(e.getMessage());
-            }
+            System.out.println("CLOSING File: " + dataFile);
+            fileInputStream.close();
         }
     }
 
 
-    public void write(Path outputFile) {
+    public void write(Path outputFile) throws IOException {
         File file = new File(outputFile.toString());
         FileOutputStream fileOutput = null;
         PrintWriter fileWrite = null;
@@ -68,17 +64,14 @@ public class DuplicateCounter {
                 fileWrite.printf("%-15s|%15d\n", entry.getKey(), entry.getValue());
             }
 
-            fileWrite.flush();
+            fileWrite.flush(); //FLUSH WRITER
+
         }catch(IOException e){
             System.out.println(e.getMessage());
         }finally {
-            try{
-                System.out.println("CLOSING File: " + outputFile);
-                fileOutput.close();
-                fileWrite.close();
-            }catch(IOException e){
-                System.out.println(e.getMessage());
-            }
+            System.out.println("CLOSING File: " + outputFile);
+            fileOutput.close();
+            fileWrite.close();
         }
     }
 }

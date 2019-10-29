@@ -1,7 +1,1 @@
-I am a programmer and I like to program quickly
-I am a programmer and I like to program quickly
-I am a programmer and I like to program quickly
-I am a programmer and I like to program quickly
-I am a programmer and I like to program quickly
-I am a programmer and I like to program quickly
-I am a programmer and I don't like to program quickly
+ I am a programmer and like to program quickly don't

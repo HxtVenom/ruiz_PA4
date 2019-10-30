@@ -12,7 +12,6 @@ public class DuplicateRemover {
     public void remove (Path dataFile) throws IOException {
         BufferedReader reader = null;
         Scanner fileScanner = null;
-        PrintWriter fileOut;
 
         try {
             System.out.println("OPENING File: " + dataFile);
@@ -20,7 +19,6 @@ public class DuplicateRemover {
             fileScanner = new Scanner(reader);
 
             String currWord;
-            String editedText = "";
 
             //Checks for duplicate words and only adds unique words to edited file
             while (fileScanner.hasNext()) {
@@ -28,17 +26,9 @@ public class DuplicateRemover {
 
                 if (!uniqueWords.contains(currWord)) {
                     uniqueWords.add(currWord);
-                    editedText = editedText + " " + currWord;
                 }
             }
             reader.close();
-
-            //Print without duplicate words
-            fileOut = new PrintWriter(dataFile.toString());
-            fileOut.print(editedText);
-
-            fileOut.flush(); //Clear Writer
-            fileOut.close(); //Close Writer
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
